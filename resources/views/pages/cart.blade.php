@@ -180,7 +180,7 @@
                         <div class="product-subtitle">Total</div>
                     </div>
                     <div class="col-8 col-md-3">
-                        <a href="/success.html" class="btn btn-success mt-4 px-4 btn-block">Checkout Now</a>
+                        <a href="{{ url('success') }}" class="btn btn-success mt-4 px-4 btn-block">Checkout Now</a>
                     </div>
                 </div>
             </div>
