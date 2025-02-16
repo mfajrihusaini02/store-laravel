@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardProductController;
+use App\Http\Controllers\DashboardSettingController;
 use App\Http\Controllers\DashboardTransactionController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\HomeController;
@@ -37,5 +38,9 @@ Route::get('/dashboard/products/{id}', [DashboardProductController::class, 'deta
 
 Route::get('/dashboard/transactions', [DashboardTransactionController::class, 'index'])->name('dashboard-transaction');
 Route::get('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'details'])->name('dashboard-transaction-details');
+
+Route::get('/dashboard/settings', [DashboardSettingController::class, 'store'])->name('dashboard-setting-store');
+
+Route::get('/dashboard/account', [DashboardSettingController::class, 'account'])->name('dashboard-setting-account');
 
 Auth::routes();
