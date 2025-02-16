@@ -7,7 +7,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <link rel="shortcut icon" href="images/logo.svg" type="image/png" />
+    <link rel="shortcut icon" href="/images/logo.svg" type="image/png" />
 
     <title>@yield('title')</title>
 
@@ -26,10 +26,10 @@
                     <img src="/images/dashboard-store-logo.svg" alt="" class="my-4" />
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="/dashboard.html" class="list-group-item list-group-item-action">
+                    <a href="{{ route('dashboard') }}" class="list-group-item list-group-item-action">
                         Dashboard
                     </a>
-                    <a href="/dashboard-products.html" class="list-group-item list-group-item-action">
+                    <a href="{{ route('dashboard-product') }}" class="list-group-item list-group-item-action">
                         My Product
                     </a>
                     <a href="/dashboard-transactions.html" class="list-group-item list-group-item-action">
@@ -41,7 +41,7 @@
                     <a href="/dashboard-account.html" class="list-group-item list-group-item-action">
                         My Account
                     </a>
-                    <a href="/index.html" class="list-group-item list-group-item-action">
+                    <a href="{{ route('home') }}" class="list-group-item list-group-item-action">
                         Sign Out
                     </a>
                 </div>
@@ -64,7 +64,7 @@
                                 <li class="nav-item dropdown">
                                     <a href="#" class="nav-link" id="navbarDropdown" role="button"
                                         data-toggle="dropdown">
-                                        <img src="images/icon-user.png" alt=""
+                                        <img src="/images/icon-user.png" alt=""
                                             class="rounded-circle mr-2 profile-picture" />
                                         Hi, Fajri
                                     </a>
