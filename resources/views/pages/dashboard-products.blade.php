@@ -19,7 +19,8 @@
                 </div>
                 <div class="row mt-4">
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                        <a href="#" class="card card-dashboard-product d-block">
+                        <a href="{{ route('dashboard-product-details', ['id' => 1]) }}"
+                            class="card card-dashboard-product d-block">
                             <div class="card-body">
                                 <img src="/images/product-card-1.png" alt="" class="w-100 mb-2" />
                                 <div class="product-title">Shirup Mazzan</div>
@@ -28,7 +29,8 @@
                         </a>
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                        <a href="#" class="card card-dashboard-product d-block">
+                        <a href="{{ route('dashboard-product-details', ['id' => 2]) }}"
+                            class="card card-dashboard-product d-block">
                             <div class="card-body">
                                 <img src="/images/product-card-2.png" alt="" class="w-100 mb-2" />
                                 <div class="product-title">Shirup Mazzan</div>
@@ -37,7 +39,8 @@
                         </a>
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                        <a href="#" class="card card-dashboard-product d-block">
+                        <a href="{{ route('dashboard-product-details', ['id' => 3]) }}"
+                            class="card card-dashboard-product d-block">
                             <div class="card-body">
                                 <img src="/images/product-card-3.png" alt="" class="w-100 mb-2" />
                                 <div class="product-title">Shirup Mazzan</div>
@@ -46,7 +49,8 @@
                         </a>
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                        <a href="#" class="card card-dashboard-product d-block">
+                        <a href="{{ route('dashboard-product-details', ['id' => 4]) }}"
+                            class="card card-dashboard-product d-block">
                             <div class="card-body">
                                 <img src="/images/product-card-4.png" alt="" class="w-100 mb-2" />
                                 <div class="product-title">Shirup Mazzan</div>
@@ -55,7 +59,8 @@
                         </a>
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                        <a href="#" class="card card-dashboard-product d-block">
+                        <a href="{{ route('dashboard-product-details', ['id' => 5]) }}"
+                            class="card card-dashboard-product d-block">
                             <div class="card-body">
                                 <img src="/images/product-card-5.png" alt="" class="w-100 mb-2" />
                                 <div class="product-title">Shirup Mazzan</div>

@@ -69,10 +69,11 @@
                                         Hi, Fajri
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a href="/dashboard.html" class="dropdown-item">Dashboard</a>
-                                        <a href="/dashboard-account.html" class="dropdown-item">Settings</a>
+                                        <a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a>
+                                        <a href="{{ route('dashboard-setting-store', ['id' => 1]) }}"
+                                            class="dropdown-item">Settings</a>
                                         <div class="dropdown-divider"></div>
-                                        <a href="/" class="dropdown-item">Logout</a>
+                                        <a href="{{ route('home') }}" class="dropdown-item">Logout</a>
                                     </div>
                                 </li>
                                 <li class="nav-item">

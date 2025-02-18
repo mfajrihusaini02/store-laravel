@@ -41,7 +41,7 @@
                 <div class="row mt-3">
                     <div class="col-12 mt-2">
                         <h5 class="mb-3">Recent Transactions</h5>
-                        <a href="/dashboard-transactions-details.html" class="card card-list d-block">
+                        <a href="{{ route('dashboard-transaction-details', ['id' => 1]) }}" class="card card-list d-block">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-1">
@@ -56,7 +56,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="/dashboard-transactions-details.html" class="card card-list d-block">
+                        <a href="{{ route('dashboard-transaction-details', ['id' => 2]) }}" class="card card-list d-block">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-1">
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="/dashboard-transactions-details.html" class="card card-list d-block">
+                        <a href="{{ route('dashboard-transaction-details', ['id' => 3]) }}" class="card card-list d-block">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-1">

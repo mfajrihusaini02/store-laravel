@@ -29,7 +29,8 @@
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-sell" role="tabpanel"
                                 aria-labelledby="pills-sell-tab">
-                                <a href="/dashboard-transactions-details.html" class="card card-list d-block">
+                                <a href="{{ route('dashboard-transaction-details', ['id' => 1]) }}"
+                                    class="card card-list d-block">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-1">
@@ -44,7 +45,8 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="/dashboard-transactions-details.html" class="card card-list d-block">
+                                <a href="{{ route('dashboard-transaction-details', ['id' => 2]) }}"
+                                    class="card card-list d-block">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-1">
@@ -59,7 +61,8 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="/dashboard-transactions-details.html" class="card card-list d-block">
+                                <a href="{{ route('dashboard-transaction-details', ['id' => 3]) }}"
+                                    class="card card-list d-block">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-1">
@@ -76,7 +79,8 @@
                                 </a>
                             </div>
                             <div class="tab-pane fade" id="pills-buy" role="tabpanel" aria-labelledby="pills-buy-tab">
-                                <a href="/dashboard-transactions-details.html" class="card card-list d-block">
+                                <a href="{{ route('dashboard-transaction-details', ['id' => 4]) }}"
+                                    class="card card-list d-block">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-1">

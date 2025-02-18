@@ -51,10 +51,10 @@
                                     <option value="" disabled>Select Category</option>
                                 </select>
                             </div>
-                            <a href="/dashboard.html" class="btn btn-success btn-block mt-4">
+                            <a href="{{ route('dashboard') }}" class="btn btn-success btn-block mt-4">
                                 Sign Up Now
                             </a>
-                            <a href="{{ url('login') }}" class="btn btn-signup btn-block mt-2">
+                            <a href="{{ route('login') }}" class="btn btn-signup btn-block mt-2">
                                 Back to Sign In
                             </a>
                         </form>

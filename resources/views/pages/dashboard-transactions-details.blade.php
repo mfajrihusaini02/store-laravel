@@ -111,7 +111,7 @@
                                                     <input type="text" name="resi" class="form-control"
                                                         v-model="resi" />
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-md-2">
                                                     <button type="submit" class="btn btn-success btn-block mt-4">
                                                         Update Resi
                                                     </button>
@@ -121,8 +121,8 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12 text-right">
-                                        <button type="submit" class="btn btn-success mt-4">
+                                    <div class="col text-right">
+                                        <button type="submit" class="btn btn-success mt-4 px-5">
                                             Save Now
                                         </button>
                                     </div>
