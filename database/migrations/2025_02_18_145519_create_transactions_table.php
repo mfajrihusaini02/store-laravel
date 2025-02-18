@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('insurance_price');
             $table->integer('shipping_price');
             $table->integer('total_price');
-            $table->string('transaction_status'); // Unpaid/Pending/Shipping/Success/Failed
+            $table->string('transaction_status'); // Unpaid/Pending/Success/Failed
             $table->string('resi');
             $table->softDeletes();
             $table->timestamps();
