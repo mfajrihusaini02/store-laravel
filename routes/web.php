@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
@@ -42,5 +43,12 @@ Route::get('/dashboard/transactions/{id}', [DashboardTransactionController::clas
 Route::get('/dashboard/settings', [DashboardSettingController::class, 'store'])->name('dashboard-setting-store');
 
 Route::get('/dashboard/account', [DashboardSettingController::class, 'account'])->name('dashboard-setting-account');
+
+Route::prefix('admin')
+    ->namespace('Admin')
+    ->group(function () {
+        Route::get('/', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
+    });
+// ->middleware(['auth', 'admin'])
 
 Auth::routes();
