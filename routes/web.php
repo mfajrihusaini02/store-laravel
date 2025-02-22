@@ -46,7 +46,6 @@ Route::get('/dashboard/settings', [DashboardSettingController::class, 'store'])-
 Route::get('/dashboard/account', [DashboardSettingController::class, 'account'])->name('dashboard-setting-account');
 
 Route::prefix('admin')
-    // ->namespace('Admin')
     ->namespace('App\Http\Controllers\Admin')
     ->group(function () {
         Route::get('/', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
