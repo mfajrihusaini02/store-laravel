@@ -28,10 +28,12 @@
                     <img src="/images/admin.png" alt="" class="my-4" style="max-width: 150px;" />
                 </div>
                 <div class="list-group list-group-flush">
-                    <a href="{{ route('admin-dashboard') }}" class="list-group-item list-group-item-action">
+                    <a href="{{ route('admin-dashboard') }}"
+                        class="list-group-item list-group-item-action {{ request()->is('admin') ? 'active' : '' }}">
                         Dashboard
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action">
+                    <a href="#"
+                        class="list-group-item list-group-item-action {{ request()->is('admin/product*') ? 'active' : '' }}">
                         Products
                     </a>
                     <a href="{{ route('category.index') }}"
@@ -41,7 +43,8 @@
                     <a href="#" class="list-group-item list-group-item-action">
                         Transactions
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action">
+                    <a href="{{ route('user.index') }}"
+                        class="list-group-item list-group-item-action {{ request()->is('admin/user*') ? 'active' : '' }}">
                         Users
                     </a>
                     <a href="{{ route('home') }}" class="list-group-item list-group-item-action">
