@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-use Yajra\DataTables\DataTables as DataTablesDataTables;
+use Yajra\DataTables\DataTables;
 
 use App\Http\Requests\Admin\CategoryRequest;
 
@@ -22,7 +22,7 @@ class CategoryController extends Controller
         if (request()->ajax()) {
             $query = Category::query();
 
-            return DataTablesDataTables::of($query)->addColumn('action', function ($item) {
+            return DataTables::of($query)->addColumn('action', function ($item) {
                 return '
                     <div class="btn-group">
                         <div class="dropdown">
