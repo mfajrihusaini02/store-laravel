@@ -49,18 +49,17 @@
                                                 <label for="password">Password User</label>
                                                 <div class="input-group">
                                                     <input type="password" id="password" name="password"
-                                                        value="{{ $item->password }}" class="form-control" required>
-                                                    <button type="button" class="btn btn-secondary" id="togglePassword">
-                                                        <img src="/images/show-eye-white.svg" style="height: 24px;"
-                                                            alt="">
-                                                    </button>
+                                                        class="form-control">
                                                 </div>
+                                                <small class="text-secondary">Kosongkan jika tidak ingin mengganti
+                                                    password</small>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="">Roles</label>
                                                 <select name="roles" class="form-control" required>
+                                                    <option value="{{ $item->roles }}" selected>Tidak diganti</option>
                                                     <option value="ADMIN">Admin</option>
                                                     <option value="USER">User</option>
                                                 </select>

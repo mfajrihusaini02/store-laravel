@@ -95,6 +95,12 @@ class UserController extends Controller
 
         $item = User::findOrFail($id);
 
+        if ($request->password) {
+            $data['password'] = bcrypt($request->password);
+        } else {
+            unset($data['password']);
+        }
+
         $item->update($data);
 
         return redirect()->route('user.index');
