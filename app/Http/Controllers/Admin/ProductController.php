@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\UserRequest;
-use App\Models\User;
+use App\Http\Requests\Admin\ProductRequest;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
-class UserController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = User::query();
+            $query = Product::with(['users', 'categories']);
 
             return DataTables::of($query)->addColumn('action', function ($item) {
                 return '
@@ -26,10 +26,10 @@ class UserController extends Controller
                                 Aksi
                             </button>
                             <div class="dropdown-menu">
-                                <a href="' . route('user.edit', $item->id) . '" class="dropdown-item">
+                                <a href="' . route('product.edit', $item->id) . '" class="dropdown-item">
                                     Edit
                                 </a>
-                                <form action="' . route('user.destroy', $item->id) . '" method="POST">
+                                <form action="' . route('product.destroy', $item->id) . '" method="POST">
                                     ' . method_field('delete') . csrf_field() . '
                                     <button type="submit" class="dropdown-item text-danger">
                                         Hapus
@@ -42,7 +42,7 @@ class UserController extends Controller
             })->rawColumns(['action'])->make();
         }
 
-        return view('pages.admin.user.index');
+        return view('pages.admin.product.index');
     }
 
     /**
@@ -50,21 +50,19 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.user.create');
+        return view('pages.admin.product.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(UserRequest $request)
+    public function store(ProductRequest $request)
     {
         $data = $request->all();
 
-        $data['password'] = bcrypt($request->password);
+        Product::create($data);
 
-        User::create($data);
-
-        return redirect()->route('user.index');
+        return redirect()->route('product.index');
     }
 
     /**
@@ -80,9 +78,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $item = User::findOrFail($id);
+        $item = Product::findOrFail($id);
 
-        return view('pages.admin.user.edit', [
+        return view('pages.admin.product.edit', [
             'item' => $item,
         ]);
     }
@@ -90,21 +88,15 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserRequest $request, string $id)
+    public function update(ProductRequest $request, string $id)
     {
         $data = $request->all();
 
-        $item = User::findOrFail($id);
-
-        if ($request->password) {
-            $data['password'] = bcrypt($request->password);
-        } else {
-            unset($data['password']);
-        }
+        $item = Product::findOrFail($id);
 
         $item->update($data);
 
-        return redirect()->route('user.index');
+        return redirect()->route('product.index');
     }
 
     /**
@@ -112,10 +104,10 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        $item = User::findOrFail($id);
+        $item = Product::findOrFail($id);
 
         $item->delete();
 
-        return redirect()->route('user.index');
+        return redirect()->route('product.index');
     }
 }

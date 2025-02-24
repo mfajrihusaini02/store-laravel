@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="dashboard-heading">
                 <h2 class="dashboard-title">Category</h2>
-                <p class="dashboard-subtitle">List of Category</p>
+                <p class="dashboard-subtitle">List of Categories</p>
             </div>
             <div class="dashbaord-content">
                 <div class="row">
