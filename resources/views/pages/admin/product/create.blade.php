@@ -38,7 +38,7 @@
                                             <div class="form-group">
                                                 <label for="">Pemilik Produk</label>
                                                 <select name="users_id" class="form-control">
-                                                    @foreach ($users as $user)
+                                                    @foreach ($user as $user)
                                                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                                                     @endforeach
                                                 </select>
