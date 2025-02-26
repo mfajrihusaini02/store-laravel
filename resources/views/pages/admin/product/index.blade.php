@@ -28,6 +28,7 @@
                                                 <th>Pemilik</th>
                                                 <th>Kategori</th>
                                                 <th>Harga</th>
+                                                <th>Slug</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -74,7 +75,22 @@
                 },
                 {
                     data: 'price',
-                    name: 'price'
+                    name: 'price',
+                    render: function(data, type, row) {
+                        // Format harga dengan pemisah ribuan dan dua desimal
+                        let formattedPrice = new Intl.NumberFormat("id-ID", {
+                            style: "currency",
+                            currency: "IDR",
+                            minimumFractionDigits: 2
+                        }).format(data);
+
+                        // Tambahkan badge warna hijau
+                        return `<div class="badge bg-success p-3 text-white">${formattedPrice}</div>`;
+                    }
+                },
+                {
+                    data: 'slug',
+                    name: 'slug'
                 },
                 {
                     data: 'action',
