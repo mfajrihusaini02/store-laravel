@@ -41,8 +41,13 @@
                                             <div class="form-group">
                                                 <label for="">Pemilik Produk</label>
                                                 <select name="users_id" class="form-control">
-                                                    <option value="" selected disabled>-- Pilih --</option>
+                                                    <option value="" disabled>-- Pilih --</option>
+                                                    <option value="{{ $item->users_id }}" selected>{{ $item->user->name }}
+                                                    </option>
                                                     @foreach ($users as $user)
+                                                        @if ($user->id == $item->users_id)
+                                                            @continue
+                                                        @endif
                                                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                                                     @endforeach
                                                 </select>
@@ -52,10 +57,13 @@
                                             <div class="form-group">
                                                 <label for="">Kategori Produk</label>
                                                 <select name="categories_id" class="form-control">
-                                                    <option value="" selected disabled>-- Pilih --</option>
-                                                    <option value="{{ $item->categories_id }}" disabled>
+                                                    <option value="" disabled>-- Pilih --</option>
+                                                    <option value="{{ $item->categories_id }}" selected>
                                                         {{ $item->category->name }}</option>
                                                     @foreach ($categories as $category)
+                                                        @if ($category->id == $item->categories_id)
+                                                            @continue
+                                                        @endif
                                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                     @endforeach
                                                 </select>
@@ -75,7 +83,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="">Deskripsi Produk</label>
-                                                <textarea name="description" id="editor" cols="30" rows="10">{{ $item->description }}</textarea>
+                                                <textarea name="description" id="editor" cols="30" rows="10">{!! $item->description !!}</textarea>
                                             </div>
                                         </div>
                                     </div>

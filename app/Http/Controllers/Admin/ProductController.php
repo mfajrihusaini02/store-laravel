@@ -108,6 +108,8 @@ class ProductController extends Controller
 
         $item = Product::findOrFail($id);
 
+        $data['slug'] = Str::slug($request->name);
+
         $item->update($data);
 
         return redirect()->route('product.index');
