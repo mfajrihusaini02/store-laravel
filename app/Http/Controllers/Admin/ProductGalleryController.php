@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductGalleryRequest;
-use App\Models\Category;
+use App\Models\Product;
 use App\Models\ProductGallery;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Str;
@@ -30,10 +28,7 @@ class ProductGalleryController extends Controller
                                 Aksi
                             </button>
                             <div class="dropdown-menu">
-                                <a href="' . route('product.edit', $item->id) . '" class="dropdown-item">
-                                    Edit
-                                </a>
-                                <form action="' . route('product.destroy', $item->id) . '" method="POST">
+                                <form action="' . route('product-gallery.destroy', $item->id) . '" method="POST">
                                     ' . method_field('delete') . csrf_field() . '
                                     <button type="submit" class="dropdown-item text-danger">
                                         Hapus
@@ -56,11 +51,10 @@ class ProductGalleryController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        $categories = Category::all();
+        $products = Product::all();
+
         return view('pages.admin.product-gallery.create', [
-            'users' => $users,
-            'categories' => $categories,
+            'products' => $products,
         ]);
     }
 
@@ -71,7 +65,7 @@ class ProductGalleryController extends Controller
     {
         $data = $request->all();
 
-        $data['slug'] = Str::slug($request->name);
+        $data['photos'] = $request->file('photos')->store('assets/product', 'public');
 
         ProductGallery::create($data);
 
