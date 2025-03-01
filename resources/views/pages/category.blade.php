@@ -73,9 +73,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12 mt-4">
-                        <nav>
-                            {{ $products->links() }}
-                        </nav>
+                        {{ $products->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>
