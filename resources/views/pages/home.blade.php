@@ -78,16 +78,18 @@
                     @forelse ($products as $product)
                         <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up"
                             data-aos-delay="{{ $incrementProduct += 100 }}">
-                            <a href="#" class="component-products d-block">
+                            <a href="{{ route('detail', $product->slug) }}" class="component-products d-block">
                                 <div class="products-thumbnail">
                                     <div class="products-image"
                                         style="
-                      background-image: url('');
-                    ">
+                                            @if ($product->galleries->count()) background-image: url('{{ Storage::url($product->galleries->first()->photos) }}')
+                                            @else
+                                                background-color: #eee @endif
+                                        ">
                                     </div>
                                 </div>
                                 <div class="products-text">{{ $product->name }}</div>
-                                <div class="products-price">Rp {{ $product->price }}</div>
+                                <div class="products-price">Rp {{ number_format($product->price, 0, ',', '.') }}</div>
                             </a>
                         </div>
                     @empty

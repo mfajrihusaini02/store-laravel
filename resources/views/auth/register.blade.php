@@ -1,5 +1,9 @@
 @extends('layouts.auth')
 
+@section('title')
+    Register Page
+@endsection
+
 @section('content')
     <div class="page-content page-auth" id="register">
         <div class="section-store-auth" data-aos="fade-up">
