@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -38,6 +39,20 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        $categories = Category::all();
+
+        return view('auth.register', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -51,7 +66,10 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'store_name' => ['nullable', 'string', 'exists:categories,id'],
+            'categories_id' => ['nullable', 'integer', 'max:255'],
+            'is_store_open' => ['required'],
         ]);
     }
 
@@ -67,6 +85,9 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'store_name' => isset($data['store_name']) ? $data['store_name'] : '',
+            'categories_id' => isset($data['categories_id']) ? $data['categories_id'] : NULL,
+            'store_status' => isset($data['is_store_open']) ? 1 : 0,
         ]);
     }
 
