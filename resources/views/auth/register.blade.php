@@ -30,8 +30,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Email Address</label>
-                                <input id="email" type="email"
-                                    class="form-control @error('email') is-invalid @enderror" name="email" v-model="email"
+                                <input id="email" type="email" @change="checkEmailAvailability()"
+                                    class="form-control @error('email') is-invalid @enderror"
+                                    :class="{ 'is-invalid': this.email_unavailable }" name="email" v-model="email"
                                     value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
@@ -84,7 +85,7 @@
                             </div>
                             <div class="form-group" v-if="is_store_open">
                                 <label for="">Nama Toko</label>
-                                <input id="name" type="text"
+                                <input id="store_name" type="text"
                                     class="form-control @error('store_name') is-invalid @enderror" store_name="store_name"
                                     v-model="store_name" value="{{ old('store_name') }}" required autocomplete="store_name"
                                     autofocus>
@@ -104,7 +105,8 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-success btn-block mt-4">
+                            <button type="submit" class="btn btn-success btn-block mt-4"
+                                :disabled="this.email_unavailable">
                                 Sign Up Now
                             </button>
                             <a href="{{ route('login') }}" class="btn btn-signup btn-block mt-2">
@@ -121,6 +123,7 @@
 @push('addon-script')
     <script src="/vendor/vue/vue.js"></script>
     <script src="https://unpkg.com/vue-toasted"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         Vue.use(Toasted);
 
@@ -128,21 +131,48 @@
             el: "#register",
             mounted() {
                 AOS.init();
-                // this.$toasted.error(
-                //     "Maaf, tampaknya email sudah terdaftar pada sistem kami.", {
-                //         position: "top-center",
-                //         className: "rounded",
-                //         duration: 1000,
-                //     }
-                // );
             },
-            data: {
-                name: "",
-                email: "",
-                password: "",
-                is_store_open: true,
-                store_name: "",
+            data() {
+                return {
+                    name: "",
+                    email: "",
+                    email_unavailable: false,
+                    is_store_open: true,
+                    store_name: "",
+                }
             },
+            methods: {
+                checkEmailAvailability: function() {
+                    var self = this;
+                    axios.get('{{ route('api-register-check') }}', {
+                            params: {
+                                email: this.email,
+                            }
+                        })
+                        .then(function(response) {
+                            if (response.data == 'Available') {
+                                self.$toasted.show(
+                                    "Email anda tersedia, silahkan lanjut pengisian!", {
+                                        type: "success",
+                                        position: "top-center",
+                                        className: "rounded",
+                                        duration: 3000,
+                                    }
+                                );
+                                self.email_unavailable = false;
+                            } else {
+                                self.$toasted.error(
+                                    "Maaf, tampaknya email sudah terdaftar pada sistem kami.", {
+                                        position: "top-center",
+                                        className: "rounded",
+                                        duration: 3000,
+                                    }
+                                );
+                                self.email_unavailable = true;
+                            }
+                        });
+                }
+            }
         });
     </script>
 @endpush
