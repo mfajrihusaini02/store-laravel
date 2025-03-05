@@ -85,14 +85,14 @@
                         <h2 class="mb-4">Shipping Details</h2>
                     </div>
                 </div>
-                <form action="#" method="POST" id="location">
+                <form action="#" method="POST" id="locations">
                     @csrf
                     <div class="row mb-2" data-aos="fade-up" data-aos-delay="200">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="address_one">Address 1</label>
                                 <input type="text" class="form-control" name="address_one" id="address_one"
-                                    value="Setra Duta Cemara" />
+                                    value="address_one" />
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -105,20 +105,24 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="provinces_id">Province</label>
-                                <select name="provinces_id" id="provinces_id" class="form-control">
-                                    <option value="DKI Jakarta">DKI Jakarta</option>
+                                <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces"
+                                    v-model="provinces_id">
+                                    <option v-for="province in provinces" :value="province.id">@{{ province.name }}
+                                    </option>
+                                </select>
+                                <select v-else name="" id="" class="form-control">
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="regencies_id">City</label>
-                                <select name="regencies_id" id="regencies_id" class="form-control">
-                                    <option value="Jakarta Pusat">Jakarta Pusat</option>
-                                    <option value="Jakarta Barat">Jakarta Barat</option>
-                                    <option value="Jakarta Timur">Jakarta Timur</option>
-                                    <option value="Jakarta Utara">Jakarta Utara</option>
-                                    <option value="Jakarta Selatan">Jakarta Selatan</option>
+                                <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies"
+                                    v-mode="regencies_id">
+                                    <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}
+                                    </option>
+                                </select>
+                                <select v-else name="" id="" class="form-control">
                                 </select>
                             </div>
                         </div>
@@ -153,15 +157,15 @@
                     </div>
                     <div class="row" data-aos="fade-up" data-aos-delay="200">
                         <div class="col-4 col-md-2">
-                            <div class="product-title">Rp 0</div>
+                            <div class="product-title">Rp {{ $countryTax }}</div>
                             <div class="product-subtitle">Country Tax</div>
                         </div>
                         <div class="col-4 col-md-3">
-                            <div class="product-title">Rp 0</div>
+                            <div class="product-title">Rp {{ $productInsurance }}</div>
                             <div class="product-subtitle">Product Insurance</div>
                         </div>
                         <div class="col-4 col-md-2">
-                            <div class="product-title">Rp 0</div>
+                            <div class="product-title">Rp {{ $shipping }}</div>
                             <div class="product-subtitle">Ship to Jakarta</div>
                         </div>
                         <div class="col-4 col-md-2">
@@ -179,20 +183,46 @@
     </div>
 @endsection
 
-{{-- @push('addon-script')
+@push('addon-script')
+    <script src="https://unpkg.com/vue-toasted"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/vendor/vue/vue.js"></script>
     <script>
-        var location = new Vue({
-            el: "#location",
+        var locations = new Vue({
+            el: "#locations",
             mounted() {
                 AOS.init();
+                this.getProvincesData();
             },
             data: {
-
+                provinces: null,
+                regencies: null,
+                provinces_id: null,
+                regencies_id: null,
             },
             methods: {
+                getProvincesData() {
+                    var self = this;
+                    axios.get('{{ route('api-provinces') }}')
+                        .then(function(res) {
+                            self.provinces = res.data;
+                        })
+                },
+                getRegenciesData() {
+                    var self = this;
+                    axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+                        .then(function(res) {
+                            self.regencies = res.data;
+                        })
 
+                },
             },
+            watch: {
+                provinces_id: function(val, oldVal) {
+                    this.regencies_id = null;
+                    this.getRegenciesData();
+                }
+            }
         });
     </script>
-@endpush --}}
+@endpush
