@@ -43,49 +43,59 @@
                                     $shipping = 0;
                                     $totalPrice = 0;
                                 @endphp
-                                @foreach ($carts as $cart)
+                                @if ($carts->isEmpty())
                                     <tr>
-                                        <td style="width: 15%">
-                                            @if ($cart->product->galleries)
-                                                <img src="{{ Storage::url($cart->product->galleries->first()->photos) }}"
-                                                    alt="" class="cart-image" />
-                                            @endif
-                                        </td>
-                                        <td style="width: 35%">
-                                            <div class="product-title">{{ $cart->product->name }}</div>
-                                            <div class="product-subtitle">by {{ $cart->user->store_name }}</div>
-                                        </td>
-                                        <td style="width: 35%">
-                                            <div class="product-title">
-                                                {{ number_format($cart->product->price, 0, ',', '.') }}</div>
-                                            <div class="product-subtitle">Rupiah</div>
-                                        </td>
-                                        <td style="width: 20%">
-                                            <form action="{{ route('cart-delete', $cart->id) }}" method="POST"
-                                                enctype="multipart/form-data">
-                                                @csrf
-                                                <button type="submit" class="btn btn-remove-cart">Remove</button>
-                                            </form>
+                                        <td colspan="4" class="text-center">
+                                            <strong>Keranjang belanja Anda kosong</strong>
                                         </td>
                                     </tr>
-                                    @php
-                                        $totalPrice +=
-                                            $cart->product->price + $countryTax + $productInsurance + $shipping;
-                                    @endphp
-                                @endforeach
+                                @else
+                                    @foreach ($carts as $cart)
+                                        <tr>
+                                            <td style="width: 15%">
+                                                @if ($cart->product->galleries)
+                                                    <img src="{{ Storage::url($cart->product->galleries->first()->photos) }}"
+                                                        alt="" class="cart-image" />
+                                                @endif
+                                            </td>
+                                            <td style="width: 35%">
+                                                <div class="product-title">{{ $cart->product->name }}</div>
+                                                <div class="product-subtitle">by {{ $cart->user->store_name }}</div>
+                                            </td>
+                                            <td style="width: 35%">
+                                                <div class="product-title">
+                                                    {{ number_format($cart->product->price, 0, ',', '.') }}</div>
+                                                <div class="product-subtitle">Rupiah</div>
+                                            </td>
+                                            <td style="width: 20%">
+                                                <form action="{{ route('cart-delete', $cart->id) }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-remove-cart">Remove</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @php
+                                            $totalPrice +=
+                                                $cart->product->price + $countryTax + $productInsurance + $shipping;
+                                        @endphp
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="row" data-aos="fade-up" data-aos-delay="150">
-                    <div class="col-12">
-                        <hr />
+                @if ($carts->isNotEmpty())
+                    <div class="row" data-aos="fade-up" data-aos-delay="150">
+                        <div class="col-12">
+                            <hr />
+                        </div>
+                        <div class="col-12">
+                            <h2 class="mb-4">Shipping Details</h2>
+                        </div>
                     </div>
-                    <div class="col-12">
-                        <h2 class="mb-4">Shipping Details</h2>
-                    </div>
-                </div>
-                <form action="#" method="POST" id="locations">
+                @endif
+                <form v-if="{{ $carts->count() }}" action="#" method="POST" id="locations">
                     @csrf
                     <div class="row mb-2" data-aos="fade-up" data-aos-delay="200">
                         <div class="col-md-6">
