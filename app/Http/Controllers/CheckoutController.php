@@ -68,6 +68,7 @@ class CheckoutController extends Controller
             'enabled_payments' => [
                 'bank_transfer',
                 'gopay',
+                'credit_card',
             ],
             'vtweb' => [],
         ];
