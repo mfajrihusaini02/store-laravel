@@ -24,7 +24,7 @@
                     <div class="col-md-4">
                         <div class="card mb-2">
                             <div class="card-body">
-                                <div class="dashboard-card-title">Revanue</div>
+                                <div class="dashboard-card-title">Revenue</div>
                                 <div class="dashboard-card-subtitle">Rp{{ number_format($revenue, 0, ',', '.') }}</div>
                             </div>
                         </div>

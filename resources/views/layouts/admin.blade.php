@@ -76,7 +76,7 @@
                                         data-toggle="dropdown">
                                         <img src="/images/icon-user.png" alt=""
                                             class="rounded-circle mr-2 profile-picture" />
-                                        Hi, Fajri
+                                        Hi, Fajri1
                                     </a>
                                     <div class="dropdown-menu">
                                         <a href="{{ route('home') }}" class="dropdown-item">Logout</a>
