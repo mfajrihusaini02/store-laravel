@@ -8,7 +8,7 @@
     <div class="section-content section-dashboard-home" data-aos="fade-up">
         <div class="container-fluid">
             <div class="dashboard-heading">
-                <h2 class="dashboard-title">Shirup Marzan</h2>
+                <h2 class="dashboard-title">{{ $product->name }}</h2>
                 <p class="dashboard-subtitle">Product Details</p>
             </div>
             <div class="dashboard-content">
@@ -109,7 +109,7 @@
                                             <input type="hidden" name="products_id" value="{{ $product->id }}">
                                             <input type="file" name="photos" id="file" style="display: none"
                                                 onchange="form.submit()" />
-                                            <button type="submit" class="btn btn-secondary btn-block mt-3"
+                                            <button type="button" class="btn btn-secondary btn-block mt-3"
                                                 onclick="thisFileUpload()">
                                                 Add Photo
                                             </button>
