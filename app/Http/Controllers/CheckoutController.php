@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Midtrans\Config;
+use Midtrans\Notification;
 use Midtrans\Snap;
 
 class CheckoutController extends Controller
@@ -84,5 +85,48 @@ class CheckoutController extends Controller
         }
     }
 
-    public function callback(Request $request) {}
+    public function callback(Request $request)
+    {
+        // Set config midtrans
+        Config::$serverKey = config('services.midtrans.serverKey');
+        Config::$isProduction = config('services.midtrans.isProduction');
+        Config::$isSanitized = config('services.midtrans.isSanitized');
+        Config::$is3ds = config('services.midtrans.is3ds');
+
+        // Instance midtrans notification
+        $notification = new Notification();
+
+        // Assign ke variabel utk memudahkan coding
+        $status = $notification->transaction_status;
+        $type = $notification->payment_type;
+        $fraud = $notification->fraud_status;
+        $order_id = $notification->order_id;
+
+        // Cari transaksi berdasarkan id
+        $transaction = Transaction::findOrFail($order_id);
+
+        // Handle notification status
+        if ($status == 'capture') {
+            if ($type == 'credit_card') {
+                if ($fraud == 'challenge') {
+                    $transaction->status = 'PENDING';
+                } else {
+                    $transaction->status = 'SUCCESS';
+                }
+            }
+        } else if ($status == 'settlement') {
+            $transaction->status = 'SUCCESS';
+        } else if ($status == 'pending') {
+            $transaction->status = 'PENDING';
+        } else if ($status == 'deny') {
+            $transaction->status = 'CANCELLED';
+        } else if ($status == 'expire') {
+            $transaction->status = 'CANCELLED';
+        } else if ($status == 'cancel') {
+            $transaction->status = 'CANCELLED';
+        }
+
+        // Save transaksi
+        $transaction->save();
+    }
 }

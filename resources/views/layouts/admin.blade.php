@@ -44,7 +44,8 @@
                         class="list-group-item list-group-item-action {{ request()->is('admin/category*') ? 'active' : '' }}">
                         Categories
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action">
+                    <a href="{{ route('transaction.index') }}"
+                        class="list-group-item list-group-item-action {{ request()->is('admin/transaction*') ? 'active' : '' }}">
                         Transactions
                     </a>
                     <a href="{{ route('user.index') }}"
@@ -76,10 +77,17 @@
                                         data-toggle="dropdown">
                                         <img src="/images/icon-user.png" alt=""
                                             class="rounded-circle mr-2 profile-picture" />
-                                        Hi, Fajri1
+                                        Hi, {{ Auth::user()->name }}
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a href="{{ route('home') }}" class="dropdown-item">Logout</a>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();"
+                                            class="dropdown-item">Logout</a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
                                     </div>
                                 </li>
                             </ul>
@@ -87,7 +95,7 @@
                             {{-- Mobile Menu --}}
                             <ul class="navbar-nav d-block d-lg-none">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">Hi, Fajri</a>
+                                    <a href="#" class="nav-link">Hi, {{ Auth::user()->name }}</a>
                                 </li>
                             </ul>
                         </div>

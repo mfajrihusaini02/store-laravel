@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ProductGalleryController as AdminProductGalleryController;
+use App\Http\Controllers\Admin\TransactionController as AdminTransactionController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
@@ -59,6 +60,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/dashboard/transactions', [DashboardTransactionController::class, 'index'])->name('dashboard-transaction');
     Route::get('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'details'])->name('dashboard-transaction-details');
+    Route::post('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'update'])->name('dashboard-transaction-update');
 
     Route::get('/dashboard/settings', [DashboardSettingController::class, 'store'])->name('dashboard-setting-store');
     Route::get('/dashboard/account', [DashboardSettingController::class, 'account'])->name('dashboard-setting-account');
@@ -73,6 +75,7 @@ Route::prefix('admin')
         Route::resource('user', AdminUserController::class);
         Route::resource('product', AdminProductController::class);
         Route::resource('product-gallery', AdminProductGalleryController::class);
+        Route::resource('transaction', AdminTransactionController::class);
     });
 // ->middleware(['auth', 'admin'])
 

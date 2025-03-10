@@ -104,14 +104,14 @@
                             <div class="form-group">
                                 <label for="address_one">Address 1</label>
                                 <input type="text" class="form-control" name="address_one" id="address_one"
-                                    value="address_one" />
+                                    value="" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="address_two">Address 2</label>
                                 <input type="text" class="form-control" name="address_two" id="address_two"
-                                    value="Blok B2 No. 34" />
+                                    value="" />
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -141,21 +141,21 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="zip_code">Postal Code</label>
-                                <input type="text" class="form-control" name="zip_code" id="zip_code" value="123999" />
+                                <input type="text" class="form-control" name="zip_code" id="zip_code" value="" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="country">Country</label>
                                 <input type="text" class="form-control" name="country" id="country"
-                                    value="Indonesia" />
+                                    value="" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="phone_number">Mobile</label>
                                 <input type="text" class="form-control" name="phone_number" id="phone_number"
-                                    value="+628 2020 11111" />
+                                    value="" />
                             </div>
                         </div>
                     </div>

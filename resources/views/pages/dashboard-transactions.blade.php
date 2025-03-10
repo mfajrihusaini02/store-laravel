@@ -29,72 +29,50 @@
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-sell" role="tabpanel"
                                 aria-labelledby="pills-sell-tab">
-                                <a href="{{ route('dashboard-transaction-details', ['id' => 1]) }}"
-                                    class="card card-list d-block">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-1">
-                                                <img src="/images/dashboard-icon-product-1.png" alt="" />
-                                            </div>
-                                            <div class="col-md-4">Shirup Marzan</div>
-                                            <div class="col-md-3">M Fajri Husaini</div>
-                                            <div class="col-md-3">2 Mei, 2024</div>
-                                            <div class="col-md-1 d-none d-md-block">
-                                                <img src="/images/dashboard-arrow-right.svg" alt="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="{{ route('dashboard-transaction-details', ['id' => 2]) }}"
-                                    class="card card-list d-block">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-1">
-                                                <img src="/images/dashboard-icon-product-2.png" alt="" />
-                                            </div>
-                                            <div class="col-md-4">LeBrone X</div>
-                                            <div class="col-md-3">M Fajri Husaini</div>
-                                            <div class="col-md-3">2 Mei, 2024</div>
-                                            <div class="col-md-1 d-none d-md-block">
-                                                <img src="/images/dashboard-arrow-right.svg" alt="" />
+                                @foreach ($sellTransactions as $item)
+                                    <a href="{{ route('dashboard-transaction-details', $item->id) }}"
+                                        class="card card-list d-block">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <img src="{{ Storage::url($item->product->galleries->first()->photos ?? '') }}"
+                                                        class="w-75" alt="" />
+                                                </div>
+                                                <div class="col-md-4">{{ $item->product->name }}</div>
+                                                <div class="col-md-3">{{ $item->product->user->store_name }}</div>
+                                                <div class="col-md-3">
+                                                    {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y H:i:s') }}
+                                                </div>
+                                                <div class="col-md-1 d-none d-md-block">
+                                                    <img src="/images/dashboard-arrow-right.svg" alt="" />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
-                                <a href="{{ route('dashboard-transaction-details', ['id' => 3]) }}"
-                                    class="card card-list d-block">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-1">
-                                                <img src="/images/dashboard-icon-product-3.png" alt="" />
-                                            </div>
-                                            <div class="col-md-4">Soffa Lembutte</div>
-                                            <div class="col-md-3">M Fajri Husaini</div>
-                                            <div class="col-md-3">3 Mei, 2024</div>
-                                            <div class="col-md-1 d-none d-md-block">
-                                                <img src="/images/dashboard-arrow-right.svg" alt="" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                @endforeach
                             </div>
                             <div class="tab-pane fade" id="pills-buy" role="tabpanel" aria-labelledby="pills-buy-tab">
-                                <a href="{{ route('dashboard-transaction-details', ['id' => 4]) }}"
-                                    class="card card-list d-block">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-1">
-                                                <img src="/images/dashboard-icon-product-1.png" alt="" />
-                                            </div>
-                                            <div class="col-md-4">Shirup Marzan</div>
-                                            <div class="col-md-3">M Fajri Husaini</div>
-                                            <div class="col-md-3">2 Mei, 2024</div>
-                                            <div class="col-md-1 d-none d-md-block">
-                                                <img src="/images/dashboard-arrow-right.svg" alt="" />
+                                @foreach ($buyTransactions as $item)
+                                    <a href="{{ route('dashboard-transaction-details', $item->id) }}"
+                                        class="card card-list d-block">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <img src="{{ Storage::url($item->product->galleries->first()->photos ?? '') }}"
+                                                        class="w-75" alt="" />
+                                                </div>
+                                                <div class="col-md-4">{{ $item->product->name }}</div>
+                                                <div class="col-md-3">{{ $item->product->user->store_name }}</div>
+                                                <div class="col-md-3">
+                                                    {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y H:i:s') }}
+                                                </div>
+                                                <div class="col-md-1 d-none d-md-block">
+                                                    <img src="/images/dashboard-arrow-right.svg" alt="" />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
