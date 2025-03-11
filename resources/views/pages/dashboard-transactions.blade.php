@@ -38,8 +38,12 @@
                                                     <img src="{{ Storage::url($item->product->galleries->first()->photos ?? '') }}"
                                                         class="w-75" alt="" />
                                                 </div>
-                                                <div class="col-md-4">{{ $item->product->name }}</div>
-                                                <div class="col-md-3">{{ $item->product->user->store_name }}</div>
+                                                <div class="col-md-4">
+                                                    {{ $item->product->name }}
+                                                </div>
+                                                <div class="col-md-3">
+                                                    {{ $item->product->user->store_name }}
+                                                </div>
                                                 <div class="col-md-3">
                                                     {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y H:i:s') }}
                                                 </div>
@@ -61,8 +65,12 @@
                                                     <img src="{{ Storage::url($item->product->galleries->first()->photos ?? '') }}"
                                                         class="w-75" alt="" />
                                                 </div>
-                                                <div class="col-md-4">{{ $item->product->name }}</div>
-                                                <div class="col-md-3">{{ $item->product->user->store_name }}</div>
+                                                <div class="col-md-4">
+                                                    {{ $item->product->name }}
+                                                </div>
+                                                <div class="col-md-3">
+                                                    {{ $item->product->user->store_name }}
+                                                </div>
                                                 <div class="col-md-3">
                                                     {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y H:i:s') }}
                                                 </div>
