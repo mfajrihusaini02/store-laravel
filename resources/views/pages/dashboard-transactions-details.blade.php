@@ -45,7 +45,8 @@
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Payment Status</div>
-                                                <div class="product-subtitle text-danger">
+                                                <div
+                                                    class="product-subtitle {{ $transaction->transaction->transaction_status != 'SUCCESS' ? 'text-danger' : 'text-success' }}">
                                                     {{ $transaction->transaction->transaction_status }}
                                                 </div>
                                             </div>
